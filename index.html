@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeZone Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="clock-card">
+    <p id="timezone-name">Local Time</p>
+    <h1 id="time-display">--:--:--</h1>
+    <p id="date-display">--</p>
+    </div>
+
+    
+    <script src="node_modules/dayjs/dayjs.min.js"></script>
+   
+    <script src="node_modules/dayjs/plugin/utc.js"></script>
+    <script src="node_modules/dayjs/plugin/timezone.js"></script>
+   
+    <script src="node_modules/micromodal/dist/micromodal.min.js"></script>
+
+    <script>
+        dayjs.extend(dayjs_plugin_utc)
+        dayjs.extend(dayjs_plugin_timezone)
+
+        function updateClk() {
+            document.getElementById("time-display").textContent = dayjs().format("HH::mm::ss");
+            document.getElementById("date-display").textContent = dayjs().format("dddd,MMMM D,YYYY");
+        }
+
+        setInterval(updateClk,10000);
+        updateClk();
+    </script>
+</body>
+</html>
